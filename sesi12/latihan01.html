@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>latihan 1 json</title>
+</head>
+<body>
+    
+    NIM: <input type="text" id="txNIM"><br>
+    NAMA: <input type="text" id="txNAMA"><br>
+    Jenis kelamin:  <input type="text" id="txJKEL"><br>
+    ALAMAT: <input type="text" id="txALAMAT"><br>
+    HOBI: <input type="text" id="txHOBI"><br>
+    TGL LAHIR: <input type="text" id="txTGL_LAHIR"><br>
+
+    <script>
+       const bacadata = new XMLHttpRequest();
+       bacadata.open("GET","http://localhost/sesi11/latihan01.php");
+       bacadata.send();
+
+       bacadata.onload = function(){
+           const dta = JSON.parse(this.responseText);
+           let JKEL = (dta.JKEL=="L")?"Laki-Laki":"perempuan";
+           
+           console.log(dta);
+           document.getElementById("txNIM").value = dta.NIM;
+           document.getElementById("txNAMA").value = dta.NAMA;
+           document.getElementById("txJKEL").value = JKEL;
+           document.getElementById("txALAMAT").value = dta.ALAMAT;
+           document.getElementById("txHOBI").value = dta.HOBI;
+           document.getElementById("txTGL_LAHIR").value = dta.TGL_LAHIR;
+          
+        
+       }
+    </script>
+
+</body>
+</html>
